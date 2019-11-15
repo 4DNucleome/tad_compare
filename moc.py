@@ -17,17 +17,21 @@ def main():
     parser.add_argument("-a", "--bedfile_1", help="Bedfile with first set of domains.", type=str)
     parser.add_argument("-b", "--bedfile_2", help="Bedfile with second set of domans.", type=str)
     args = parser.parse_args()
+    if path.isdir(args.bedfile_1):
+        sets = [f for f in glob.glob(args.bedfile_1 + "*")]
+        for set in sets:
+            name = path.basename(set).split('.')[0]
 
 
-    name1 = path.basename(args.bedfile_1).split('.')[0]
-    name2 = path.basename(args.bedfile_2).split('.')[0]
+    else:
 
-    domain_set1 = read_domains_from_bedfile(args.bedfile_1)
-    domain_set2 = read_domains_from_bedfile(args.bedfile_2)
-    print(f"Number of domains in {name1}: {len(domain_set1)}")
-    print(f"Number of domains in {name2}: {len(domain_set2)}")
-    moc = calculate_moc(domain_set1, domain_set2)
-    print(f"MoC for {name1} and {name2} equals to: {moc}")
+        name1 = path.basename(args.bedfile_1).split('.')[0]
+        name2 = path.basename(args.bedfile_2).split('.')[0]
+
+        domain_set1 = read_domains_from_bedfile(args.bedfile_1)
+        domain_set2 = read_domains_from_bedfile(args.bedfile_2)
+        moc = calculate_moc(domain_set1, domain_set2)
+        print(f"MoC for {name1} and {name2} equals to: {moc}")
 
 
 if __name__ == '__main__':

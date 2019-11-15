@@ -40,3 +40,8 @@ def calculate_moc(set1, set2):
 def check_overlap(start1, end1, start2, end2):
     """Return the overlap between two domains"""
     return range(max(start1, start2), min(end1, end2 + 1))
+
+
+# def moc_for_multiple_sets(ste_list):
+#     """Return MoC similarity matrix for all set of TADs given in list."""
+#     moc_matr =
