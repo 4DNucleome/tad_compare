@@ -16,8 +16,6 @@ def main():
     parser = argparse.ArgumentParser(description="opis")
     parser.add_argument("-a", "--bedfile_1", help="Bedfile with first set of domains.", type=str)
     parser.add_argument("-b", "--bedfile_2", help="Bedfile with second set of domans.", type=str)
-    parser.add_argument("-o", "--output",
-                        help="Directory to save your result in. Used only with multiple sets (when --bedfile_1 is a directory).")
     args = parser.parse_args()
 
 
