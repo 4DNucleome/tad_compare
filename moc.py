@@ -26,6 +26,8 @@ def main():
 
     domain_set1 = read_domains_from_bedfile(args.bedfile_1)
     domain_set2 = read_domains_from_bedfile(args.bedfile_2)
+    print(f"Number of domains in {name1}: {len(domain_set1)}")
+    print(f"Number of domains in {name2}: {len(domain_set2)}")
     moc = calculate_moc(domain_set1, domain_set2)
     print(f"MoC for {name1} and {name2} equals to: {moc}")
 

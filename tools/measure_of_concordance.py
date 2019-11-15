@@ -20,7 +20,6 @@ def read_domains_from_bedfile(bedfile):
 
 
 def calculate_moc(set1, set2):
-    print(len(set1), len(set2))
     n1 = len(set1)  # number fo domains in set 1
     n2 = len(set2)  # number of domains in set 2
     if set1 == set2 == 1:
