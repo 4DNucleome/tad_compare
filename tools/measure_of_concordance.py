@@ -4,6 +4,7 @@
 @author: zparteka
 """
 import numpy as np
+import pandas as pd
 
 
 def read_domains_from_bedfile(bedfile):
@@ -42,6 +43,29 @@ def check_overlap(start1, end1, start2, end2):
     return range(max(start1, start2), min(end1, end2 + 1))
 
 
-# def moc_for_multiple_sets(ste_list):
-#     """Return MoC similarity matrix for all set of TADs given in list."""
-#     moc_matr =
+def moc_for_multiple_sets(set_list):
+    """Return MoC similarity matrix for all set of TADs given in list."""
+    n = len(set_list)
+    moc_matr = np.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                moc_matr[i, j] = 1
+                continue
+            if moc_matr[i, j] == 0:
+                moc = calculate_moc(set_list[i], set_list[j])
+                moc_matr[i, j] = moc
+                moc_matr[j, i] = moc
+    return moc_matr
+
+
+def save_moc_matrix(moc_matrix, outfile):
+    """Format nicely and save MoC matrix with sets names"""
+    moc_matrix.to_csv(outfile, sep=",", header=True, index=True)
+    print(f"MoC matrix saved in {outfile}.")
+
+
+def add_row_and_columns_id(names, moc_matrix):
+    """Add column and row names by transforming to pandas"""
+    df = pd.DataFrame(moc_matrix, columns=names, index=names)
+    return df
