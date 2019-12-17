@@ -15,10 +15,10 @@ def main():
     parser = argparse.ArgumentParser(description="Calculate Measure of Concordance as described in Comparison of "
                                                  "computational methods for the identification of  topologically  "
                                                  "associating domains. (Genome Biology 2018)")
-    parser.add_argument("bedfile_1", help="Bedfile with first set of domains or path to multiple domains files.",
-                        type=str)
+    parser.add_argument("-a", "--bedfile_1", help="Bedfile with first set of domains or path to multiple domains files.",
+                        type=str, required=True)
     parser.add_argument("-b", "--bedfile_2",
-                        help="Bedfile with second set of domans. Used only if --bedfile_1 is not a directory.",
+                        help="Bedfile with second set of domains. Used only if --bedfile_1 is not a directory.",
                         type=str)
     parser.add_argument("-o", "--output",
                         help="Directory to save output file. Output is saved only when analysing multiple sets of TADs "
@@ -30,8 +30,9 @@ def main():
         if path.isdir(args.output):
             outname = path.join(args.output, "MoC_matrix.csv")
         else:
-            if not args.outfile.endswith(".csv"):
-                raise Exception("Wrong file format! --outfile should be either a directory or a .csv file.")
+            if not args.output.endswith(".csv"):
+                raise Exception("Wrong file format! --output should be either a directory or a .csv file.")
+            outname = args.output
     else:
         outname = path.join(args.bedfile_1, "MoC_matrix.csv")
 
@@ -41,6 +42,8 @@ def main():
         sets.sort()
         names = []
         for set in sets:
+            if not set.endswith("bed"):
+                continue
             names.append(path.basename(set).split('.')[0])
             domain_sets.append(read_domains_from_bedfile(bedfile=set))
         moc_matrix = moc_for_multiple_sets(set_list=domain_sets)
