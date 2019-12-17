@@ -15,14 +15,14 @@ chr1	2400000	2480000
 chr1	2760000	3440000  
 ....
 
-##Measure of Concordance (MoC)
+## Measure of Concordance (MoC)
 Parameteres:  
 
   -h, --help            show this help message and exit  
   -a BEDFILE_1, --bedfile_1  Bedfile with first set of domains or path to multiple domains files.  
   -b BEDFILE_2, --bedfile_2  Bedfile with second set of domains. Used only if --bedfile_1 is not a directory.
  
-###Comparing two sets:
+### Comparing two sets:
 Usage:
 
 `./moc.py -a domains_to_compare/NA19238_all_domains.bed -b domains_to_compare/NA19239_all_domains.bed`
@@ -34,7 +34,7 @@ Output:
 `Number of domains in NA19239_all_domains: 3871`  
 `MoC for NA19238_all_domains and NA19239_all_domains equals to: 0.847649147998292`
 
-###Comparing multiple sets:
+### Comparing multiple sets:
 
 Usage:
 
