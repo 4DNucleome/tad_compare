@@ -87,3 +87,27 @@ Usage:
 Output:
 
 ![Alt text](./readme_example/conserved_tads.png)
+
+## Venn diagram
+
+Plot Venn diagram of TADs shared among either two or three different sets.
+
+### Two sets:
+
+Usage:
+`./plot_venn.py -d NA19239_all_domains.bed NA19240_all_domains.bed -o ./readme_example/venn_2_sets.png`
+
+Output:
+
+![Alt text](./readme_example/venn_2_sets.png)
+
+### Three sets:
+
+Usage:
+
+`./plot_venn.py -d NA19239_all_domains.bed NA19240_all_domains.bed NA19238_all_domains.bed -o ./readme_example/venn_3_sets.png
+`
+
+Output:
+
+![Alt text](./readme_example/venn_3_sets.png)
