@@ -46,7 +46,13 @@ def check_domains(domain1, domain2):
     return False
 
 
-def common_domais_multiple_sets(domains_sets, shift):
+def save_domains_matrix(tad_matrix, outfile):
+    """Format nicely and save conserved domains matrix with sets names"""
+    tad_matrix.to_csv(outfile, sep=",", header=True, index=True)
+    print(f"Conserved domains matrix saved in {outfile}.")
+
+
+def common_domains_multiple_sets(domains_sets, shift):
     """Return a matrix with common domains for different sets."""
     matr = np.zeros((len(domains_sets), len(domains_sets)), dtype=int)
     for i in range(len(domains_sets)):
@@ -73,4 +79,3 @@ def plot_venn_diagram_of_2_sets(sets, names, outname, show):
         plt.savefig(outname, dpi=100)
     if show:
         plt.show()
-

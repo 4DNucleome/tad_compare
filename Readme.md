@@ -20,8 +20,15 @@ Parameteres:
 
   -h, --help            show this help message and exit  
   -a BEDFILE_1, --bedfile_1  Bedfile with first set of domains or path to multiple domains files.  
-  -b BEDFILE_2, --bedfile_2  Bedfile with second set of domains. Used only if --bedfile_1 is not a directory.
+  -b BEDFILE_2, --bedfile_2  Bedfile with second set of domains. Used only if --bedfile_1 is not a directory.  
+  -o OUTPUT, --output
+                        Directory to save output file. Output is saved only
+                        when analysing multiple sets of TADs (When --bedfile_1
+                        is a directory). If None save in input directory.  
+  -r REPORT, --report
+                        If True return MoC to stdout. Default=True
  
+
 ### Comparing two sets:
 Usage:
 
@@ -48,3 +55,35 @@ Output:
 Measure of Concordance is implemented according to formula proposed in:  
 
 Zufferey, Marie, et al. "Comparison of computational methods for the identification of topologically associating domains." Genome biology 19.1 (2018): 217.
+
+## Conserved domains
+
+Parameteres:  
+
+  -h, --help            show this help message and exit  
+  -a BEDFILE_1, --bedfile_1  Bedfile with first set of domains or path to multiple domains files.  
+  -b BEDFILE_2, --bedfile_2  Bedfile with second set of domains. Used only if --bedfile_1 is not a directory.   
+  -o OUTPUT, --output  Directory to save output file. Output is saved only
+                        when analysing multiple sets of TADs (When --bedfile_1
+                        is a directory. If None save in input directory.  
+  -r  REPORT, --report If True print output matrix to stdout. Default=True  
+  -s SHIFT, --shift 
+                        Accepted shift of two domain boundaries positions in
+                        base pair.  
+
+### Comparing two sets:
+Usage:  
+
+` ./common_tads.py -a NA19238_all_domains.bed -b NA19240_all_domains.bed`
+
+Output:  
+
+`Number of common TADs between NA19238_all_domains and NA19240_all_domains with shift 0 bp equals to: 1287.'`
+### Comparing multiple sets:
+Usage:
+
+` ./common_tads.py -a /home/zparteka/cent/domains/yoruba/ -o ./readme_example/common_tads.csv -r True -s 0`
+
+Output:
+
+![Alt text](./readme_example/conserved_tads.png)

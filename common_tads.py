@@ -11,8 +11,8 @@
 """
 
 import argparse
-from tools.measure_of_concordance import read_domains_from_bedfile, add_row_and_columns_id, save_moc_matrix
-from tools.common_domains import find_common_domains, common_domais_multiple_sets
+from tools.measure_of_concordance import read_domains_from_bedfile, add_row_and_columns_id
+from tools.common_domains import find_common_domains, common_domains_multiple_sets, save_domains_matrix
 from os import path
 import glob
 
@@ -28,9 +28,9 @@ def main():
     parser.add_argument("-o", "--output",
                         help="Directory to save output file. Output is saved only when analysing multiple sets of TADs "
                              "(When --bedfile_1 is a directory. If None save in input directory.", default=None)
-    parser.add_argument("-r", "--report", help="If True return MoC to stdout. Default=True", default=True, type=bool)
+    parser.add_argument("-r", "--report", help="If True print output matrix to stdout. Default=True", default=True, type=bool)
     parser.add_argument("-s", "--shift", default=0, type=int,
-                        help="Accepted shift of two domain boundaries in base pair.")
+                        help="Accepted shift of two domain boundaries positions in base pair.")
     args = parser.parse_args()
 
     if args.output:
@@ -53,11 +53,11 @@ def main():
                 continue
             names.append(path.basename(set).split('.')[0])
             domain_sets.append(read_domains_from_bedfile(bedfile=set))
-        common_tads_matr = common_domais_multiple_sets(domains_sets=domain_sets, shift=args.shift)
+        common_tads_matr = common_domains_multiple_sets(domains_sets=domain_sets, shift=args.shift)
         common_tads_df = add_row_and_columns_id(names=names, moc_matrix=common_tads_matr)
         if args.report:
             print(common_tads_df)
-        save_moc_matrix(moc_matrix=common_tads_df, outfile=outname)
+        save_domains_matrix(tad_matrix=common_tads_df, outfile=outname)
 
     else:
 
