@@ -82,7 +82,7 @@ Output:
 ### Comparing multiple sets:
 Usage:
 
-` ./common_tads.py -a /home/zparteka/cent/domains/yoruba/ -o ./readme_example/common_tads.csv -r True -s 0`
+` ./common_tads.py -a ~/domains/yoruba/ -o ./readme_example/common_tads.csv -r True -s 0`
 
 Output:
 
