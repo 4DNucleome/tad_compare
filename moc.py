@@ -9,6 +9,7 @@ from tools.measure_of_concordance import calculate_moc, read_domains_from_bedfil
     save_moc_matrix, add_row_and_columns_id
 from os import path
 import glob
+from tools.str2bool import str2bool
 
 
 def main():
@@ -23,7 +24,7 @@ def main():
     parser.add_argument("-o", "--output",
                         help="Directory to save output file. Output is saved only when analysing multiple sets of TADs "
                              "(When --bedfile_1 is a directory. If None save in input directory.", default=None)
-    parser.add_argument("-r", "--report", help="If True return MoC to stdout. Default=True", default=True)
+    parser.add_argument("-r", "--report", help="If True return MoC to stdout. Default=True", default=True, type=str2bool)
     args = parser.parse_args()
 
     if args.output:

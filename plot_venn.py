@@ -8,6 +8,7 @@ from os import path
 import glob
 from tools.measure_of_concordance import read_domains_from_bedfile
 from tools.common_domains import plot_venn_diagram_of_3_sets, plot_venn_diagram_of_2_sets
+from tools.str2bool import str2bool
 
 
 def main():
@@ -16,7 +17,7 @@ def main():
                         help='List of files (two or three) with different domains sets.', required=True)
     parser.add_argument("-o", "--output",
                         help="Directory or filename to save a plot in.", default=None)
-    parser.add_argument("-s", "--show", help="If True show the plot.", default=True, type=bool)
+    parser.add_argument("-s", "--show", help="If True show the plot.", default=True, type=str2bool)
     args = parser.parse_args()
 
     if args.output:
