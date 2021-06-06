@@ -56,10 +56,11 @@ def common_domains_multiple_sets(domains_sets, shift):
     """Return a matrix with common domains for different sets."""
     matr = np.zeros((len(domains_sets), len(domains_sets)), dtype=int)
     for i in range(len(domains_sets)):
-        for j in range(len(domains_sets)):
+        for j in range(i, len(domains_sets)):
             if i == j:
-                continue
-            matr[i][j] = len(find_common_domains(set1=domains_sets[i], set2=domains_sets[j], shift=shift))
+                matr[i][j] = len(domains_sets[i])
+            else:
+                matr[i][j] = matr[j][i] = len(find_common_domains(set1=domains_sets[i], set2=domains_sets[j], shift=shift))
     return matr
 
 
