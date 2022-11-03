@@ -15,6 +15,7 @@ from tools.measure_of_concordance import read_domains_from_bedfile, add_row_and_
 from tools.common_domains import find_common_domains, common_domains_multiple_sets, save_domains_matrix
 from os import path
 import glob
+from tools.str2bool import str2bool
 
 
 def main():
@@ -28,7 +29,7 @@ def main():
     parser.add_argument("-o", "--output",
                         help="Directory to save output file. Output is saved only when analysing multiple sets of TADs "
                              "(When --bedfile_1 is a directory. If None save in input directory.", default=None)
-    parser.add_argument("-r", "--report", help="If True print output matrix to stdout. Default=True", default=True, type=bool)
+    parser.add_argument("-r", "--report", help="If True print output matrix to stdout. Default=True", default=True, type=str2bool)
     parser.add_argument("-s", "--shift", default=0, type=int,
                         help="Accepted shift of two domain boundaries positions in base pair.")
     args = parser.parse_args()
